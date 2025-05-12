@@ -11,15 +11,24 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Specific version that works with Jupyter
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install jupyter nbformat pyyaml
+
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.4.555  # Explicit version that supports WebR
+          version: 1.4.555  # Explicit WebR-compatible version
 
-      - name: Render Quarto
-        uses: quarto-dev/quarto-actions/render@v2
-        with:
-          format: html
+      - name: Render Quarto (HTML)
+        run: |
+          quarto render --to html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
