@@ -12,3 +12,20 @@ ggplot(mtcars, aes(mpg, hp)) +
   geom_point() +
   ggtitle("WebR + ggplot2")
 ```
+
+```{webr}
+#| eval: false
+#| code-fold: false
+#| code-summary: "Edit and run this code"
+# Sample exercise - Calculate the mean
+x <- c(1, 3, 5, 7)
+mean(x)
+```
+
+```{webr}
+#| eval: false
+#| code-fold: false
+#| code-summary: "Try plotting"
+# Interactive plot exercise
+plot(1:10, col = "blue", pch = 16)
+```

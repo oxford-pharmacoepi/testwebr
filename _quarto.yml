@@ -5,18 +5,20 @@ format:
   html:
     webr:
       workers: true
-      service-worker: true  # Required for persistent sessions
-      environment: interactive  # Enable full interactivity
-      packages: ["shiny", "DT"]  # For interactive elements
-    code-tools: true  # Enable code copy/run buttons
+      service-worker: true  # Required for session persistence
+    code-tools:
+      source: true
+      toggle: true
     include-in-header:
       - text: |
           <script>
-            // Optional: Configure WebR behavior
-            window.WebR = {
-              REnv: {
-                HOME: '/tmp',
-                R_DEFAULT_PACKAGES: 'datasets,utils,grDevices,graphics,stats'
-              }
-            }
+            // Configure interactive WebR environment
+            document.addEventListener('DOMContentLoaded', () => {
+              window.webr = new WebR({
+                interactive: true,  // Enable full interactivity
+                stdout: (line) => console.log(line),
+                stderr: (line) => console.error(line)
+              });
+              webr.init();
+            });
           </script>
