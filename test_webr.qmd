@@ -1,0 +1,14 @@
+---
+title: "WebR Demo"
+format: html
+---
+
+```{webr}
+# Load a WebR-compatible package
+library(ggplot2)
+
+# Create a plot
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  ggtitle("WebR + ggplot2")
+```

@@ -1,0 +1,18 @@
+project:
+  output-dir: _site  # Sets output directory for rendered files
+
+format:
+  html:
+    webr:
+      workers: true    # Enable WebR workers for better performance
+    include-in-header:
+      - text: |
+          <script>
+            // Optional: Configure WebR behavior
+            window.WebR = {
+              REnv: {
+                HOME: '/tmp',
+                R_DEFAULT_PACKAGES: 'datasets,utils,grDevices,graphics,stats'
+              }
+            }
+          </script>

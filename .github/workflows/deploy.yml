@@ -1,0 +1,27 @@
+name: Deploy Quarto with WebR
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  render-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/install@v2
+
+      - name: Render Quarto
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          format: html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site  # Must match output-dir in _quarto.yml
+          keep_files: true      # Preserve other files in gh-pages branch
