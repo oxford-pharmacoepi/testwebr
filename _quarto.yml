@@ -4,7 +4,11 @@ project:
 format:
   html:
     webr:
-      workers: true    # Enable WebR workers for better performance
+      workers: true
+      service-worker: true  # Required for persistent sessions
+      environment: interactive  # Enable full interactivity
+      packages: ["shiny", "DT"]  # For interactive elements
+    code-tools: true  # Enable code copy/run buttons
     include-in-header:
       - text: |
           <script>
